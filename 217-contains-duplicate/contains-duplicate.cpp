@@ -1,15 +1,13 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        unordered_map<int,int> freqmap;
-        for(auto i :nums){
-            freqmap[i]++;
-        }
-        for(auto const& [element,count]:freqmap){
-            if(count > 1){
+    unordered_set<int> seen;
+        for(int num:nums){
+            if(seen.count(num)){
                 return true;
             }
+            seen.insert(num);
         }
-        return false ;
+        return false;
     }
 };
