@@ -1,16 +1,14 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        // if(rowIndex == 0) return {1};
-        // else if(rowIndex == 1) return {1,1};
-        vector<vector<int>> triangle;
+        vector<int> prev;
         for(int row =0;row<=rowIndex;row++){
             vector<int> current(row+1,1);
             for(int col = 1;col<row;col++){
-                current[col] = triangle[row-1][col-1] + triangle[row-1][col];
+                current[col] = prev[col-1] + prev[col];
             }
-            triangle.push_back(current);
+            prev = current;
         }
-        return triangle[rowIndex];
+        return prev;
     }
 };
